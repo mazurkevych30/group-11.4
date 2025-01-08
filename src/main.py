@@ -8,7 +8,9 @@ from src.helpers.record_hendlers import (
     show_all,
     add_birthday,
     show_birthday,
-    birthdays
+    birthdays,
+    add_email,
+    add_address,
     )
 
 def main():
@@ -28,15 +30,23 @@ def main():
             case "hello":
                 print("How can I help you?")
             case "add":
-                print(add_contact(args, book))   
+                print(add_contact(args, book))
             case "change":
-                print(change_contact(args, book)) 
+                print(change_contact(args, book))
             case "phone":
                 show_phone(args, book)
             case "all":
                 show_all(book)
             case "add-birthday":
                 print(add_birthday(args, book))
+            case "add-email":
+                print(add_email(args, book))
+            case "edit-email":
+                print(add_email(args, book))
+            case "add-address":
+                print(add_address(args, book))
+            case "edit-address":
+                print(add_address(args, book))
             case "show-birthday":
                 print(show_birthday(args, book))
             case "birthdays":

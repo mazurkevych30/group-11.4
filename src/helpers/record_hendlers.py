@@ -30,12 +30,12 @@ def show_all(book: AddressBook) -> None :
 
 
 @input_error
-def show_phone(args, book: AddressBook) -> None: 
+def show_phone(args, book: AddressBook) -> None:
     name, *_ = args
     record = book.find(name)
     if record is None:
-       print("Contact not found.")
-       return
+        print("Contact not found.")
+        return
     
     for number in record.phones:
         print(number)
@@ -50,7 +50,6 @@ def change_contact(args: list, book: AddressBook) -> str:
 
     return record.edit_phone(old_phone, new_phone)
 
-
 @input_error
 def add_birthday(args, book: AddressBook):
     name, birthday, *_ = args
@@ -62,6 +61,29 @@ def add_birthday(args, book: AddressBook):
     return record.add_birthday(birthday)
 
 @input_error
+def add_email(args, book: AddressBook):
+    name, email, *_ = args
+    record = book.find(name)
+
+    if record is None:
+        return "Contact not found."
+    
+    return record.add_email(email)
+
+@input_error
+def add_address(args, book: AddressBook):
+    name, *address_list, = args
+    address = ""
+    for item in address_list:
+        address = address + " " + item
+    record = book.find(name)
+
+    if record is None:
+        return "Contact not found."
+
+    return record.add_address(address)
+
+@input_error
 def show_birthday(args, book: AddressBook):
     name, *_ = args
     record = book.find(name)
@@ -71,7 +93,7 @@ def show_birthday(args, book: AddressBook):
     
     if record.birthday is None:
         return record.birthday
-    return f"{name} birthday {datetime.strftime(record.birthday.value, "%d.%m.%Y")}"
+    return f"{name} birthday {datetime.strftime(record.birthday.value, '%d.%m.%Y')}"
 
 @input_error
 def birthdays(book: AddressBook):
@@ -82,4 +104,4 @@ def birthdays(book: AddressBook):
         return
 
     for person in congratulations:
-        print(f"Name: {person["name"].capitalize()}. Congratulation date - {person["congratulation_date"]}")
+        print(f"Name: {person['name'].capitalize()}. Congratulation date - {person['congratulation_date']}")
