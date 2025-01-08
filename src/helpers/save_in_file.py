@@ -7,7 +7,7 @@ import pickle
 from src.models.address_book import AddressBook
 from src.models.notes_book import NotesBook
 
-DATA_FOLDER = os.path.expanduser("~/.assistant_data")
+DATA_FOLDER = os.getcwd()
 ADDRESS_BOOK_FILE = os.path.join(DATA_FOLDER, "addressbook.pkl")
 NOTES_BOOK_FILE = os.path.join(DATA_FOLDER, "notesbook.pkl")
 

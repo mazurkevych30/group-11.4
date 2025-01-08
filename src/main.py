@@ -1,5 +1,5 @@
 """Modules"""
-from src.helpers.save_in_file import load_data, save_data
+from src.helpers.save_in_file import save_address_book, load_address_book
 from src.helpers.command_parser import parse_input
 from src.helpers.record_hendlers import (
     add_contact,
@@ -15,7 +15,7 @@ from src.helpers.record_hendlers import (
 
 def main():
     """Main script"""
-    book = load_data()
+    book = load_address_book()
     print("Welcome to the assistant bot!")
 
     while True:
@@ -24,7 +24,7 @@ def main():
 
         match command:
             case "close" | "exit":
-                save_data(book)
+                save_address_book(book)
                 print("Good bye!")
                 break
             case "hello":
