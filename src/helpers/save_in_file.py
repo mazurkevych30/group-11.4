@@ -12,7 +12,7 @@ ADDRESS_BOOK_FILE = os.path.join(DATA_FOLDER, "addressbook.pkl")
 NOTES_BOOK_FILE = os.path.join(DATA_FOLDER, "notesbook.pkl")
 
 def ensure_data_folder():
-        """
+    """
     Перевіряє наявність папки для збереження даних.
     Якщо папка не існує, вона створюється.
     """
