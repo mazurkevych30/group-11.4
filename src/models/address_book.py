@@ -1,9 +1,16 @@
+"""Import module that support UserDict type"""
 from collections import UserDict
 from datetime import datetime, timedelta
 
 
 class AddressBook(UserDict):
+    """
+    Model of address book
+    """
     def add_record(self, record):
+        """
+        Add record to the address book
+        """
         if str(record.name).lower() in self.data:
             raise ValueError(f"AddressBook already have record with name {str(record.name)}")
         self.data[str(record.name).lower()] = record

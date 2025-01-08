@@ -13,7 +13,7 @@ class Name(Field):
         if not value.strip():
             raise Exception("Name required field.")
         super().__init__(value.strip())
-          
+
 class Phone(Field):
     def __init__(self, phone):
         if not re.match(r'^\d{10}$', phone):
@@ -28,3 +28,19 @@ class Birthday(Field):
             raise ValueError("Invalid date format. Use DD.MM.YYYY")
         finally:
             self.value = None
+
+class Email(Field):
+    """
+    Model of email field with validation
+    """
+    def __init__(self, email):
+        if not re.match(r"(\w+)@(\w+\.\w+)", email):
+            raise Exception("Invalid email.")
+        super().__init__(email)
+
+class Address(Field):
+    """
+    Model of address
+    """
+    def __init__(self, address: str):
+        super().__init__(address)
