@@ -1,5 +1,5 @@
 """Modules"""
-from src.helpers.save_in_file import save_address_book, load_address_book
+from src.helpers.save_in_file import save_address_book, load_address_book, save_notes_book, load_notes_book
 from src.helpers.command_parser import parse_input
 from src.helpers.record_hendlers import (
     add_contact,
@@ -12,10 +12,17 @@ from src.helpers.record_hendlers import (
     add_email,
     add_address,
     )
+from src.helpers.note_handlers import ( 
+    add_note,
+    show_notes,
+    edit_note,
+    delete_note,
+    )
 
 def main():
     """Main script"""
     book = load_address_book()
+    note = load_notes_book()
     print("Welcome to the assistant bot!")
 
     while True:
@@ -25,6 +32,7 @@ def main():
         match command:
             case "close" | "exit":
                 save_address_book(book)
+                save_notes_book(note)
                 print("Good bye!")
                 break
             case "hello":
@@ -51,5 +59,13 @@ def main():
                 print(show_birthday(args, book))
             case "birthdays":
                 birthdays(book)
+            case "add_note":
+                print(add_note(args, note))
+            case "show_notes":
+                print(show_notes(note))
+            case "edit_note":
+                print(edit_note(args, note))
+            case "delete_note":
+                print(delete_note(args, note))
             case _:
                 print("Invalid command.")

@@ -1,5 +1,47 @@
 from src.helpers.input_error import input_error
+from src.models.notes_book import NotesBook
+from src.models.note import Note
+
 
 @input_error
-def add_note():
-    pass
+def add_note(args, notes_book: NotesBook):
+    if len(args) < 1:
+        return "Please enter a note title"
+    title = args[0]
+    text = input("Enter note text: ").strip()
+    tags_input = input("Tags must be separated by commas: ").strip()
+    tags = [tag.strip() for tag in tags_input.split(",")] if tags_input else []
+    if title in notes_book.data:
+        return f"Note '{title}' already exists."
+    note = Note(title=title, text=text, tags=tags)
+    notes_book.add_note(note)
+    return f"Note '{title}' added successfully."
+
+@input_error
+def show_notes(notes_book: NotesBook)  -> None:
+    print("All notes:")
+    for _ , note in notes_book.data.items():
+        print(note) 
+
+@input_error
+def edit_note(args, notes_book: NotesBook):
+    if len(args) < 2:
+        return "Please enter more than 1 argument"
+    title = args[0]
+    new_text = args[1]
+    new_tags = args[2:]
+    
+    result = notes_book.edit_note(title, new_text, new_tags)
+    if result:
+        return result
+    return f"Note '{title}' updated."
+
+@input_error
+def delete_note(args, notes_book: NotesBook):
+    if len(args) != 1:
+        return "Please enter a note title"
+    title = args[0]
+    result = notes_book.delete(title)
+    if result:
+        return result
+    return f"Note '{title}' deleted."
