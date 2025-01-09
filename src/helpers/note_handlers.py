@@ -21,6 +21,7 @@ def add_note(args, notes_book: NotesBook):
 def show_notes(notes_book: NotesBook)  -> None:
     print("All notes:")
     for _ , note in notes_book.data.items():
+        print("--------------")
         print(note) 
 
 @input_error
@@ -45,3 +46,27 @@ def delete_note(args, notes_book: NotesBook):
     if result:
         return result
     return f"Note '{title}' deleted."
+
+@input_error
+def find_note_by_key(args, notes_book: NotesBook):
+    if len(args) != 1:
+        return "Please enter a search key"
+    key = args[0]
+    found_notes = notes_book.find(key)
+    if not found_notes:
+        return f"No notes with key '{key}'."
+    
+    result = "\n\n".join(str(note) for note in found_notes)
+    return result
+
+@input_error
+def find_notes_by_tag(args, notes_book: NotesBook):
+    if len(args) != 1:
+        return "Please enter a note tag"
+    tag = args[0]
+    found_notes = notes_book.find_by_tag(tag)
+    if not found_notes:
+        return f"No notes with tag '{tag}'."
+    
+    result = "\n\n".join(str(note) for note in found_notes)
+    return result

@@ -7,13 +7,11 @@ class NotesBook(UserDict):
 
     def add_note(self, note):
         self.data[note.title] = note
-        for _ , record in self.data.items():
-            print(record)
 
     def find(self, keyword):
         found_notes = []
         for note in self.data.values():
-            if keyword in note.title or keyword in note.content or keyword in note.tags:
+            if keyword in note.title or keyword in note.text or keyword in note.tags:
                 found_notes.append(note)
         return found_notes if found_notes else None
 
@@ -29,7 +27,7 @@ class NotesBook(UserDict):
             if new_text:
                 note.text = new_text
             if new_tags is not None:
-                note.tags = new_tags
+                note.tags = list(new_tags[0].split(","))
         else:
             return f"Note '{title}' not found."
 

@@ -18,6 +18,8 @@ from src.helpers.note_handlers import (
     show_notes,
     edit_note,
     delete_note,
+    find_note_by_key,
+    find_notes_by_tag,
     )
 
 def main():
@@ -70,5 +72,9 @@ def main():
                 print(edit_note(args, note))
             case "delete_note":
                 print(delete_note(args, note))
+            case "find_note_by_key":
+                print(find_note_by_key(args, note))
+            case "find_notes_by_tag":
+                print(find_notes_by_tag(args, note))
             case _:
                 print("Invalid command.")
