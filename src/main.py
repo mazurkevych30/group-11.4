@@ -3,6 +3,7 @@ from src.helpers.save_in_file import save_address_book, load_address_book, save_
 from src.helpers.command_parser import parse_input
 from src.helpers.record_hendlers import (
     add_contact,
+    delete_contact,
     change_contact,
     show_phone,
     show_all,
@@ -39,6 +40,8 @@ def main():
                 print("How can I help you?")
             case "add":
                 print(add_contact(args, book))
+            case "delete":
+                print(delete_contact(args, book))
             case "change":
                 print(change_contact(args, book))
             case "phone":

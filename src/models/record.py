@@ -27,13 +27,20 @@ class Record:
         self.email = Email(email)
         return "Email added."
     
-    def add_address(self, address = ""):
+    # def add_address(self, address = ""):
+    #     """
+    #     Method to add address to the record
+    #     """
+    #     self.address = Address(address)
+    #     return "Address added."
+
+    def add_address(self, country = "", city = "", street = "", house = "", flat = ""):
         """
         Method to add address to the record
         """
-        self.address = Address(address)
+        self.address = Address(country, city, street, house, flat)
         return "Address added."
-
+    
     def remove_phone(self, phone: str):
         """
         Method to remove phone number from the record
@@ -80,3 +87,5 @@ class Record:
         phones: {'; '.join(p.value for p in self.phones)},\
         email: {self.email if self.email else 'no email'},\
         address: {self.address if self.address else 'no address'}"
+    
+    # address: {self.address if self.address else 'no address'}
