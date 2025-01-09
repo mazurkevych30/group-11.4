@@ -21,13 +21,24 @@ def add_contact(args: list, book: AddressBook) -> str:
         record.add_phone(phone)
     return message
 
+@input_error
+def delete_contact(args: list, book: AddressBook) -> str:
+    name = args[0]
+    record = book.find(name)    
+    if record is None:        
+        return "Contact not found."
+    book.delete(name)
+    return "Contact deleted."
+
 
 @input_error
 def show_all(book: AddressBook) -> None :
-    print("My contacts:")
-    for _ , record in book.data.items():
-        print(record)
-
+    if len(book.data.items()) == 0:
+        print("Trere is no any contact in the address book")
+    else:
+        print("My contacts:")    
+        for _ , record in book.data.items():
+            print(record)
 
 @input_error
 def show_phone(args, book: AddressBook) -> None:
@@ -70,18 +81,34 @@ def add_email(args, book: AddressBook):
     
     return record.add_email(email)
 
+# @input_error
+# def add_address(args, book: AddressBook):
+#     name, *address_list, = args
+#     address = ""
+#     for item in address_list:
+#         address = address + " " + item
+#     record = book.find(name)
+
+#     if record is None:
+#         return "Contact not found."
+
+#     return record.add_address(address)
+
 @input_error
 def add_address(args, book: AddressBook):
-    name, *address_list, = args
-    address = ""
-    for item in address_list:
-        address = address + " " + item
+    
+    name  = args[0]
     record = book.find(name)
-
+    
     if record is None:
         return "Contact not found."
+    country = input("Enter a country ")
+    city = input("Enter a city ")
+    street = input("Enter a street Name ")
+    house = input("Enter a house number ")
+    flat = input("Enter a room or appartment number ")    
 
-    return record.add_address(address)
+    return record.add_address(country, city, street, house, flat)
 
 @input_error
 def show_birthday(args, book: AddressBook):
