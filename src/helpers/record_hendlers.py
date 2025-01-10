@@ -112,26 +112,31 @@ def add_address(args, book: AddressBook):
 
 @input_error
 def show_birthday(args, book: AddressBook):
+    """Print contact birthday"""
     name, *_ = args
     record = book.find(name)
 
     if record is None:
         return "Contact not found."
-    
+
     if record.birthday is None:
         return record.birthday
     return f"{name} birthday {datetime.strftime(record.birthday.value, '%d.%m.%Y')}"
 
 @input_error
-def birthdays(book: AddressBook):
-    congratulations = book.get_upcoming_birthdays()
-    
+def birthdays(args: list, book: AddressBook):
+    """Print upcoming birthday"""
+    input_date, *_ = args
+
+    congratulations = book.get_upcoming_birthdays(datetime.strptime(input_date, '%d.%m.%Y').date())
+
     if len(congratulations) == 0:
         print("Not upcoming birthday")
         return
 
     for person in congratulations:
-        print(f"Name: {person['name'].capitalize()}. Congratulation date - {person['congratulation_date']}")
+        print("Name: " + person['name'].capitalize()+
+              ". Congratulation date - "+ person['congratulation_date'])
 
 
 #search-contacts
