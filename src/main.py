@@ -12,6 +12,7 @@ from src.helpers.record_hendlers import (
     birthdays,
     add_email,
     add_address,
+    search_contact
     )
 from src.helpers.note_handlers import ( 
     add_note,
@@ -76,5 +77,7 @@ def main():
                 print(find_note_by_key(args, note))
             case "find_notes_by_tag":
                 print(find_notes_by_tag(args, note))
+            case "search":
+                print(search_contact(args, book))
             case _:
                 print("Invalid command.")

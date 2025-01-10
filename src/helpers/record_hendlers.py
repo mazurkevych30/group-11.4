@@ -132,3 +132,25 @@ def birthdays(book: AddressBook):
 
     for person in congratulations:
         print(f"Name: {person['name'].capitalize()}. Congratulation date - {person['congratulation_date']}")
+
+
+#search-contacts
+
+@input_error
+def search_contact(args, book):
+    """
+    Search for a contact by name in the address book.
+    :param args: List of search criteria (e.g., name).
+    :param book: Address book dictionary.
+    :return: String with search results.
+    """
+    if not args:
+        return "Please provide a name to search for."
+
+    name_to_search = args[0].lower()
+    results = [f"{name}: {details}" for name, details in book.items() if name_to_search in name.lower()]
+
+    if results:
+        return "\n".join(results)
+    else:
+        return f"No contacts found matching '{name_to_search}'."
