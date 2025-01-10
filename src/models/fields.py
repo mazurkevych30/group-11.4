@@ -26,8 +26,6 @@ class Birthday(Field):
             self.value = datetime.strptime(value, "%d.%m.%Y")
         except ValueError:
             raise ValueError("Invalid date format. Use DD.MM.YYYY")
-        finally:
-            self.value = None
 
 class Email(Field):
     """
