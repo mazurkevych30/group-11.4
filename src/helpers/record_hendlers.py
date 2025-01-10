@@ -81,19 +81,6 @@ def add_email(args, book: AddressBook):
     
     return record.add_email(email)
 
-# @input_error
-# def add_address(args, book: AddressBook):
-#     name, *address_list, = args
-#     address = ""
-#     for item in address_list:
-#         address = address + " " + item
-#     record = book.find(name)
-
-#     if record is None:
-#         return "Contact not found."
-
-#     return record.add_address(address)
-
 @input_error
 def add_address(args, book: AddressBook):
     
