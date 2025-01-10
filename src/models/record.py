@@ -24,8 +24,9 @@ class Record:
         """
         Method to add email to the record
         """
+        message = "Email added." if (self.email is None) else "Email updated."
         self.email = Email(email)
-        return "Email added."
+        return message
     
     # def add_address(self, address = ""):
     #     """
@@ -38,8 +39,9 @@ class Record:
         """
         Method to add address to the record
         """
+        message = "Address added." if (self.address is None) else "Address updated."
         self.address = Address(country, city, street, house, flat)
-        return "Address added."
+        return message
     
     def remove_phone(self, phone: str):
         """
@@ -76,16 +78,19 @@ class Record:
         """
         Method to add user birthday in the record
         """
+        message = "Birthday added." if (self.birthday is None) else "Birthday updated."
         self.birthday = Birthday(birthday)
-        return "Birthday updated."
+        return message
 
     def __str__(self):
         birthday_value = (
             datetime.strftime(self.birthday.value, "%d.%m.%Y") if self.birthday else "No birthday"
             )
-        return f"Contact name: {self.name.value}, birthday: {birthday_value},\
-        phones: {'; '.join(p.value for p in self.phones)},\
-        email: {self.email if self.email else 'no email'},\
-        address: {self.address if self.address else 'no address'}"
+        # contact_info = "Contact name: " + self.name.value + " birthday: " + birthday_value
+        # contact_info = contact_info + " phones: " + '; '.join(p.value for p in self.phones)
+        # contact_info = contact_info + " email: " + self.email if self.email else 'no email'
+        # contact_info = contact_info + " address: " + self.address if self.address else 'no address'
+        # return contact_info
+        return f"Contact name: {self.name.value}, birthday: {birthday_value}, phones: {'; '.join(p.value for p in self.phones)}, email: {self.email if self.email else 'no email'}, address: {self.address if self.address else 'no address'}"
     
-    # address: {self.address if self.address else 'no address'}
+    

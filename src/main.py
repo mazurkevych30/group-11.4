@@ -45,7 +45,7 @@ def main():
                 print(add_contact(args, book))
             case "delete":
                 print(delete_contact(args, book))
-            case "change":
+            case "change-phone":
                 print(change_contact(args, book))
             case "phone":
                 show_phone(args, book)
@@ -63,6 +63,8 @@ def main():
                 print(add_address(args, book))
             case "show-birthday":
                 print(show_birthday(args, book))
+            case "edit-birthday":
+                print(add_birthday(args, book))
             case "birthdays":
                 birthdays(book)
             case "add_note":
