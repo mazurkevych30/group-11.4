@@ -64,7 +64,7 @@ def find_note_by_key(args, notes_book: NotesBook):
     return result
 
 @input_error
-def find_notes_by_tag(args, notes_book: NotesBook):
+def find_notes_by_tags(args, notes_book: NotesBook):
     """ Function for searching notes by tag"""
     if len(args) != 1:
         return "Please enter a note tag"

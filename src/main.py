@@ -27,7 +27,7 @@ from src.helpers.note_handlers import (
     edit_note,
     delete_note,
     find_note_by_key,
-    find_notes_by_tag,
+    find_notes_by_tags,
     sort_notes_by_tags
 )
 
@@ -36,7 +36,7 @@ commands_list = [
      "hello", "help", "add-contact", "delete-contact", "search-contact", "change-phone", "phone", "all",
     "add-birthday", "add-email", "edit-email", "add-address", "edit-address",
     "show-birthday", "edit-birthday", "birthdays", "add-note", "show-notes", "edit-note",
-    "delete-note", "find-note-by-key", "find-notes-by-tag", "sort-notes-by-tags", "close", "exit"
+    "delete-note", "find-note-by-key", "find-notes-by-tags", "sort-notes-by-tags", "close", "exit"
 ]
 
 # Create a CommandCompleter class for autocompletion
@@ -139,8 +139,8 @@ def main():
             case "find-note-by-key":
                 print(find_note_by_key(args, note))
 
-            case "find-notes-by-tag":
-                print(find_notes_by_tag(args, note))
+            case "find-notes-by-tags":
+                print(find_notes_by_tags(args, note))
 
             case "sort-notes-by-tags":
                 print(sort_notes_by_tags(note))

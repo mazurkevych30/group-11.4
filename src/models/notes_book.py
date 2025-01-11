@@ -36,11 +36,14 @@ class NotesBook(UserDict):
 
     def find_by_tag(self, tag: str) -> list:
         """ Function for searching notes by tags"""
+        tags = [t.strip() for t in tag.split(',')]
         all_notes = []
+
         for note in self.data.values():
-            if tag in note.tags:
+            if any(tag in note.tags for tag in tags):
                 all_notes.append(note)
         return all_notes if all_notes else None
+
 
     def to_dict(self):
         return {"All notes": [note.to_dict() for note in self.data.values()]}
