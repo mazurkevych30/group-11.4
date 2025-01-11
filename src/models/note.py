@@ -1,5 +1,7 @@
 from datetime import datetime
+
 class Note:
+    """ Model of note"""
     def __init__(self, title, text, tags = None):
         self.title = title
         self.text = text
