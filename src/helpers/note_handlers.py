@@ -70,3 +70,20 @@ def find_notes_by_tag(args, notes_book: NotesBook):
     
     result = "\n\n".join(str(note) for note in found_notes)
     return result
+
+@input_error
+def sort_notes_by_tags(notes_book: NotesBook)  -> None:
+    tagged_notes = {}
+
+    for note_key, note in notes_book.data.items():
+        for tag in note.tags:
+            if tag not in tagged_notes:
+                tagged_notes[tag] = []
+            tagged_notes[tag].append(note)
+    sorted_tags = sorted(tagged_notes.keys())
+    for tag in sorted_tags:
+        print(f"Notes with tag- {tag}:")
+        print("----------------")
+        for note in tagged_notes[tag]:
+            print(note)
+            print()

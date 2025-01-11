@@ -2,8 +2,6 @@ from collections import UserDict
 from src.models.note import Note
 
 class NotesBook(UserDict):
-    def __init__(self):
-        self.data = {}
 
     def add_note(self, note):
         self.data[note.title] = note

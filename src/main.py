@@ -1,4 +1,5 @@
 """Main module"""
+from fuzzywuzzy import process
 from src.helpers.save_in_file import (
     save_address_book,
     load_address_book,
@@ -26,7 +27,20 @@ from src.helpers.note_handlers import (
     delete_note,
     find_note_by_key,
     find_notes_by_tag,
+    sort_notes_by_tags,
     )
+
+commands_list = [
+    "close", "exit", "hello", "add", "delete", "change", "phone", "all", 
+    "add-birthday", "add-email", "edit-email", "add-address", "edit-address",
+    "show-birthday", "birthdays", "add_note", "show_notes", "edit_note", 
+    "delete_note", "find_note_by_key", "find_notes_by_tag", "sort_notes_by_tags"
+]
+
+# Function to search for the nearest command from available commands
+def suggest_closest_command(user_input):
+    closest_match = process.extractOne(user_input, commands_list)
+    return closest_match
 
 def main():
     """Main script"""
@@ -37,6 +51,15 @@ def main():
     while True:
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
+
+    # Checking if the command is found
+        if command not in commands_list:
+            suggestion = suggest_closest_command(user_input)
+            if suggestion[1] >= 40:  # If the similarity is more than 60% - we offer a team
+                print(f"Did you mean '{suggestion[0]}'?")
+            else:
+                print("Invalid command.")
+            continue
 
         match command:
             case "close" | "exit":
@@ -84,6 +107,8 @@ def main():
                 print(find_note_by_key(args, note))
             case "find_notes_by_tag":
                 print(find_notes_by_tag(args, note))
+            case "sort_notes_by_tags":
+                print(sort_notes_by_tags(note))
             case "search":
                 print(search_contact(args, book))
             case _:
