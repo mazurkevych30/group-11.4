@@ -2,9 +2,9 @@ from src.helpers.input_error import input_error
 from src.models.notes_book import NotesBook
 from src.models.note import Note
 
-
 @input_error
 def add_note(args, notes_book: NotesBook):
+    """ Function for adding a new note"""
     if len(args) < 1:
         return "Please enter a note title"
     title = args[0]
@@ -19,6 +19,7 @@ def add_note(args, notes_book: NotesBook):
 
 @input_error
 def show_notes(notes_book: NotesBook)  -> None:
+    """ A function that displays all notes from a notebook"""
     print("All notes:")
     for _ , note in notes_book.data.items():
         print("--------------")
@@ -26,6 +27,7 @@ def show_notes(notes_book: NotesBook)  -> None:
 
 @input_error
 def edit_note(args, notes_book: NotesBook):
+    """ Function for editing note by title"""
     if len(args) < 2:
         return "Please enter more than 1 argument"
     title = args[0]
@@ -39,6 +41,7 @@ def edit_note(args, notes_book: NotesBook):
 
 @input_error
 def delete_note(args, notes_book: NotesBook):
+    """ Function for delete a note by title"""
     if len(args) != 1:
         return "Please enter a note title"
     title = args[0]
@@ -49,6 +52,7 @@ def delete_note(args, notes_book: NotesBook):
 
 @input_error
 def find_note_by_key(args, notes_book: NotesBook):
+    """ Function for searching notes by keyword in title, text or tags"""
     if len(args) != 1:
         return "Please enter a search key"
     key = args[0]
@@ -61,6 +65,7 @@ def find_note_by_key(args, notes_book: NotesBook):
 
 @input_error
 def find_notes_by_tag(args, notes_book: NotesBook):
+    """ Function for searching notes by tag"""
     if len(args) != 1:
         return "Please enter a note tag"
     tag = args[0]
@@ -73,6 +78,7 @@ def find_notes_by_tag(args, notes_book: NotesBook):
 
 @input_error
 def sort_notes_by_tags(notes_book: NotesBook)  -> None:
+    """ Function for sorting notes by tag"""
     tagged_notes = {}
 
     for note_key, note in notes_book.data.items():
