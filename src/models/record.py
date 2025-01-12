@@ -79,11 +79,10 @@ class Record:
         birthday_value = (
             datetime.strftime(self.birthday.value, "%d.%m.%Y") if self.birthday else "No birthday"
             )
-        # contact_info = "Contact name: " + self.name.value + " birthday: " + birthday_value
-        # contact_info = contact_info + " phones: " + '; '.join(p.value for p in self.phones)
-        # contact_info = contact_info + " email: " + self.email if self.email else 'no email'
-        # contact_info = contact_info + " address: " + self.address if self.address else 'no address'
-        # return contact_info
-        return f"Contact name: {self.name.value}, birthday: {birthday_value}, phones: {'; '.join(p.value for p in self.phones)}, email: {self.email if self.email else 'no email'}, address: {self.address if self.address else 'no address'}"
-    
-    
+
+        return (
+            "Contact name: " + self.name.value + " birthday: " + birthday_value
+            + " phones: " + '; '.join(p.value for p in self.phones)
+            + " email: " + (self.email if self.email else 'no email')
+            + " address: " + (str(self.address) if self.address else 'no address')
+            )

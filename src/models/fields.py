@@ -28,7 +28,7 @@ class Birthday(Field):
     """User birthday field class"""
     def __init__(self, value):
         try:
-            self.value = datetime.strptime(value, "%d.%m.%Y")
+            super().__init__(datetime.strptime(value, "%d.%m.%Y"))
         except ValueError as exc:
             raise ValueError("Invalid date format. Use DD.MM.YYYY") from exc
 
@@ -52,6 +52,10 @@ class Address:
         self.flat = flat.strip()
 
     def __str__(self) -> str:
-        return f"{self.country+',' if self.country else ''} {self.city+',' if self.city else ''} \
-        {self.street+',' if self.street else ''} {self.house+',' if self.house else ''} \
-        {self.flat if self.flat else ''} "
+        return (
+            f"{self.country + ',' if self.country else ''} "
+            f"{self.city + ',' if self.city else ''} "
+            f"{self.street + ',' if self.street else ''} "
+            f"{self.house + ',' if self.house else ''} "
+            f"{self.flat if self.flat else ''}"
+            )

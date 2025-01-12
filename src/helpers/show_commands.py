@@ -5,32 +5,32 @@ def show_commands():
     commands = [
         ("hello", "Greets the user"),
         ("help", "Provides help information"),
-        ("add-contact", "Adds a new contact"),
-        ("delete-contact", "Deletes an existing contact"),
-        ("search-contact", "Searches for a contact"),
-        ("change-phone", "Changes the phone number of a contact"),
-        ("phone", "Displays the phone number of a contact"),
-        ("all", "Displays all contacts"),
-        ("add-birthday", "Adds a birthday to a contact"),
-        ("add-email", "Adds an email to a contact"),
+        ("add-contact [name] [number]", "Adds a new contact"),
+        ("delete-contact [name]", "Deletes an existing contact"),
+        ("search-contact [name]", "Searches for a contact"),
+        ("change-phone [old phone] [new phone]", "Changes the phone number of a contact"),
+        ("show-phone [name]", "Displays the phone number of a contact"),
+        ("all-contacts", "Displays all contacts"),
+        ("add-birthday [name] [format date dd.mm.yyyy]", "Adds a birthday to a contact"),
+        ("add-email [name] [email]", "Adds an email to a contact"),
         ("edit-email", "Edits the email of a contact"),
-        ("add-address", "Adds an address to a contact"),
+        ("add-address [name]", "Adds an address to a contact"),
         ("edit-address", "Edits the address of a contact"),
-        ("show-birthday", "Displays the birthday of a contact"),
-        ("edit-birthday", "Edits the birthday of a contact"),
+        ("show-birthday [name]", "Displays the birthday of a contact"),
+        ("edit-birthday [name] [format date dd.mm.yyyy]", "Edits the birthday of a contact"),
         ("birthdays", "Displays all birthdays"),
-        ("add-note", "Adds a note to a contact"),
-        ("show-notes", "Displays all notes for a contact"),
-        ("edit-note", "Edits a note of a contact"),
-        ("delete-note", "Deletes a note from a contact"),
-        ("find-note-by-key", "Finds a note by keyword"),
-        ("find-notes-by-tags", "Finds notes by tags"),
-        ("sort-notes-by-tags", "Sorts notes by tags"),
+        ("add-note [title]", "Adds a new note"),
+        ("show-notes", "Displays all notes"),
+        ("edit-note [title] [text] [tags]", "Edits a note by title"),
+        ("delete-note [title]", "Deletes a note by title"),
+        ("find-note-by-key [key]", "Finds notes by keyword"),
+        ("find-notes-by-tags [tag1,tag2...]", "Finds notes by tags"),
+        ("sort-notes-by-tags", "Displays and sorts all notes by tags"),
         ("close", "Closes the application"),
         ("exit", "Exits the program")
     ]
 
-    print(f"{'Command':<20} {'Description'}")
-    print('-' * 40)
+    print(f"{'Command':<50} {'Description'}")
+    print('-' * 90)
     for command, description in commands:
-        print(f"{command:<20} {description}")
+        print(f"{command:<50} {description}")
