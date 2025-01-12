@@ -1,6 +1,9 @@
+"""This module provides a command-line interface (CLI) for an assistant bot."""
 from prompt_toolkit import prompt
-from prompt_toolkit.completion import Completer, Completion
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+from src.models.command_completer import CommandCompleter, commands_list
+
+from src.helpers.show_commands import show_commands
 from src.helpers.save_in_file import (
     save_address_book,
     load_address_book,
@@ -31,23 +34,6 @@ from src.helpers.note_handlers import (
     sort_notes_by_tags
 )
 
-# List of available commands
-commands_list = [
-     "hello", "help", "add-contact", "delete-contact", "search-contact", "change-phone", "phone", "all",
-    "add-birthday", "add-email", "edit-email", "add-address", "edit-address",
-    "show-birthday", "edit-birthday", "birthdays", "add-note", "show-notes", "edit-note",
-    "delete-note", "find-note-by-key", "find-notes-by-tags", "sort-notes-by-tags", "close", "exit"
-]
-
-# Create a CommandCompleter class for autocompletion
-class CommandCompleter(Completer):
-    def get_completions(self, document, complete_event):
-        text = document.text
-        for cmd in commands_list:
-            if cmd.startswith(text):
-                yield Completion(cmd, start_position=-len(text))
-
-
 def main():
     """Main script"""
     # Load data
@@ -60,7 +46,8 @@ def main():
 
     while True:
         # Get user input with autocompletion
-        user_input = prompt("Enter a command: ", completer=completer, auto_suggest=AutoSuggestFromHistory())
+        user_input = prompt("Enter a command: ",
+                            completer=completer, auto_suggest=AutoSuggestFromHistory())
 
         if not user_input.strip():
             print("No command entered. Type 'help' to see a list of commands.")
@@ -80,6 +67,9 @@ def main():
 
             case "hello":
                 print("How can I help you?")
+
+            case "help":
+                show_commands()
 
             case "help":
                 for idx, command in enumerate(commands_list, start=1):
