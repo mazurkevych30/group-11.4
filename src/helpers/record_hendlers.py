@@ -148,7 +148,9 @@ def search_contact(args, book):
         return "Please provide a name to search for."
 
     name_to_search = args[0].lower()
-    results = [f"{name}: {details}" for name, details in book.items() if name_to_search in name.lower()]
+    results = [
+        f"{name}: {details}" for name, details in book.items() if name_to_search in name.lower()
+        ]
 
     if results:
         return "\n".join(results)

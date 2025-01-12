@@ -11,9 +11,6 @@ class AddressBook(UserDict):
         """
         Add record to the address book
         """
-        # print("ADDING RECORD")
-        # print(self.data)
-        # print(str(record.name).lower() in self.data)
         if str(record.name).lower() in self.data:
             print(f"AddressBook already have record with name {str(record.name)}")
             raise ValueError(f"AddressBook already have record with name {str(record.name)}")

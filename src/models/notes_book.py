@@ -1,3 +1,4 @@
+"""This module defines the NotesBook class, a model for managing a collection of notes."""
 from collections import UserDict
 from src.models.note import Note
 
@@ -46,10 +47,12 @@ class NotesBook(UserDict):
 
 
     def to_dict(self):
+        """Show all notes"""
         return {"All notes": [note.to_dict() for note in self.data.values()]}
 
     @classmethod
     def from_dict(cls, data):
+        """Create an instance of NotesBook from a dictionary."""
         notes_book = cls()
         for note_data in data['notes']:
             note = Note.from_dict(note_data)

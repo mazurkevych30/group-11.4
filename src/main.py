@@ -1,8 +1,5 @@
 """This module provides a command-line interface (CLI) for an assistant bot."""
-from prompt_toolkit import prompt
-from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
-from src.models.command_completer import CommandCompleter, commands_list
-
+from src.models.command_completer import colored_input, commands_list
 from src.helpers.show_commands import show_commands
 from src.helpers.save_in_file import (
     save_address_book,
@@ -40,14 +37,11 @@ def main():
     book = load_address_book()
     note = load_notes_book()
 
-    completer = CommandCompleter()
-
     print("Welcome to the assistant bot!")
 
     while True:
         # Get user input with autocompletion
-        user_input = prompt("Enter a command: ",
-                            completer=completer, auto_suggest=AutoSuggestFromHistory())
+        user_input = colored_input()
 
         if not user_input.strip():
             print("No command entered. Type 'help' to see a list of commands.")
@@ -71,10 +65,6 @@ def main():
             case "help":
                 show_commands()
 
-            case "help":
-                for idx, command in enumerate(commands_list, start=1):
-                    print(f"{idx}. {command}")
-
             case "add-contact":
                 print(add_contact(args, book))
 
@@ -84,10 +74,10 @@ def main():
             case "change-phone":
                 print(change_contact(args, book))
 
-            case "phone":
+            case "show-phone":
                 show_phone(args, book)
 
-            case "all":
+            case "all-contacts":
                 show_all(book)
 
             case "add-birthday":
@@ -118,7 +108,7 @@ def main():
                 print(add_note(args, note))
 
             case "show-notes":
-                print(show_notes(note))
+                show_notes(note)
 
             case "edit-note":
                 print(edit_note(args, note))
