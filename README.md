@@ -1,11 +1,12 @@
-# cli assistant
+# CLI assistant
 
-# install
+## Install
 - pip install -e .
-- 
-# open assistant
+
+## Open assistant
 - run_assistant
-- 
+
+## Commands list
 - hello: Greets the user
 - help: Provides help information
 - add-contact [name] [number]: Adds a new contact
