@@ -27,13 +27,6 @@ class Record:
         message = "Email added." if (self.email is None) else "Email updated."
         self.email = Email(email)
         return message
-    
-    # def add_address(self, address = ""):
-    #     """
-    #     Method to add address to the record
-    #     """
-    #     self.address = Address(address)
-    #     return "Address added."
 
     def add_address(self, country = "", city = "", street = "", house = "", flat = ""):
         """
@@ -42,7 +35,7 @@ class Record:
         message = "Address added." if (self.address is None) else "Address updated."
         self.address = Address(country, city, street, house, flat)
         return message
-    
+
     def remove_phone(self, phone: str):
         """
         Method to remove phone number from the record

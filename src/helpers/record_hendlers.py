@@ -1,3 +1,5 @@
+"""Module of functions to work with record in the addressbook"""
+
 from datetime import datetime
 from src.helpers.input_error import input_error
 from src.models.address_book import AddressBook
@@ -10,6 +12,7 @@ from src.models.record import Record
 
 @input_error
 def add_contact(args: list, book: AddressBook) -> str:
+    """Add contact to the addressbook with name and phone"""
     name, phone, *_ = args
     record = book.find(name)
     message = "Contact updated."
@@ -23,9 +26,10 @@ def add_contact(args: list, book: AddressBook) -> str:
 
 @input_error
 def delete_contact(args: list, book: AddressBook) -> str:
+    """Delete contact from the addressbook by name"""
     name = args[0]
-    record = book.find(name)    
-    if record is None:        
+    record = book.find(name)
+    if record is None:
         return "Contact not found."
     book.delete(name)
     return "Contact deleted."
@@ -33,27 +37,29 @@ def delete_contact(args: list, book: AddressBook) -> str:
 
 @input_error
 def show_all(book: AddressBook) -> None :
+    """Print all contacts in the addressbook"""
     if len(book.data.items()) == 0:
         print("Trere is no any contact in the address book")
     else:
-        print("My contacts:")    
+        print("My contacts:")
         for _ , record in book.data.items():
             print(record)
 
 @input_error
 def show_phone(args, book: AddressBook) -> None:
+    """Print phone numbers of contact from the addressbook by name"""
     name, *_ = args
     record = book.find(name)
     if record is None:
         print("Contact not found.")
         return
-    
+
     for number in record.phones:
         print(number)
-    
 
 @input_error
 def change_contact(args: list, book: AddressBook) -> str:
+    """Change contact's phone number from the addressbook by name"""
     name, old_phone, new_phone = args
     record = book.find(name)
     if record is None:
@@ -63,37 +69,39 @@ def change_contact(args: list, book: AddressBook) -> str:
 
 @input_error
 def add_birthday(args, book: AddressBook):
+    """Add birthday to the contact by name"""
     name, birthday, *_ = args
     record = book.find(name)
 
     if record is None:
         return "Contact not found."
-    
+
     return record.add_birthday(birthday)
 
 @input_error
 def add_email(args, book: AddressBook):
+    """Add email to the contact by name"""
     name, email, *_ = args
     record = book.find(name)
 
     if record is None:
         return "Contact not found."
-    
+
     return record.add_email(email)
 
 @input_error
 def add_address(args, book: AddressBook):
-    
+    """Add address to the contact by name"""
     name  = args[0]
     record = book.find(name)
-    
+
     if record is None:
         return "Contact not found."
     country = input("Enter a country ")
     city = input("Enter a city ")
     street = input("Enter a street Name ")
     house = input("Enter a house number ")
-    flat = input("Enter a room or appartment number ")    
+    flat = input("Enter a room or appartment number ")
 
     return record.add_address(country, city, street, house, flat)
 

@@ -1,7 +1,9 @@
+"""Module with basic classes"""
 import re
 from datetime import datetime
 
 class Field:
+    """General field class"""
     def __init__(self, value):
         self.value = value
 
@@ -9,23 +11,26 @@ class Field:
         return str(self.value)
 
 class Name(Field):
+    """User name field class"""
     def __init__(self, value: str):
         if not value.strip():
-            raise Exception("Name required field.")
+            raise ValueError("Name is required field.")
         super().__init__(value.strip())
 
 class Phone(Field):
+    """User phone field class"""
     def __init__(self, phone):
         if not re.match(r'^\d{10}$', phone):
-            raise Exception("The phone number must be 10 digits.")
+            raise ValueError("The phone number must be 10 digits.")
         super().__init__(phone)
 
 class Birthday(Field):
+    """User birthday field class"""
     def __init__(self, value):
         try:
             self.value = datetime.strptime(value, "%d.%m.%Y")
-        except ValueError:
-            raise ValueError("Invalid date format. Use DD.MM.YYYY")
+        except ValueError as exc:
+            raise ValueError("Invalid date format. Use DD.MM.YYYY") from exc
 
 class Email(Field):
     """
@@ -33,7 +38,7 @@ class Email(Field):
     """
     def __init__(self, email):
         if not re.match(r"(\w+)@(\w+\.\w+)", email):
-            raise Exception("Invalid email.")
+            raise ValueError("Invalid email.")
         super().__init__(email)
 class Address:
     """
@@ -50,11 +55,3 @@ class Address:
         return f"{self.country+',' if self.country else ''} {self.city+',' if self.city else ''} \
         {self.street+',' if self.street else ''} {self.house+',' if self.house else ''} \
         {self.flat if self.flat else ''} "
-
-
-# class Address(Field):
-#     """
-#     Model of address
-#     """
-#     def __init__(self, address: str):
-#         super().__init__(address)

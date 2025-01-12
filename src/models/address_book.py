@@ -11,17 +11,27 @@ class AddressBook(UserDict):
         """
         Add record to the address book
         """
+        # print("ADDING RECORD")
+        # print(self.data)
+        # print(str(record.name).lower() in self.data)
         if str(record.name).lower() in self.data:
+            print(f"AddressBook already have record with name {str(record.name)}")
             raise ValueError(f"AddressBook already have record with name {str(record.name)}")
         self.data[str(record.name).lower()] = record
-    
+
     def find(self, name: str):
+        """
+        Find record by name in the address book
+        """
         for name_record, record in self.data.items():
             if name_record == name.lower().strip():
                 return record
         return None
 
     def delete(self, name: str):
+        """
+        Delete record from the address book by name
+        """
         return self.data.pop(name.lower().strip(), None)
 
     def get_upcoming_birthdays(self, input_date : datetime) -> list:
