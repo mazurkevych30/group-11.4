@@ -123,7 +123,7 @@ def main():
                 print(find_notes_by_tags(args, note))
 
             case "sort-notes-by-tags":
-                print(sort_notes_by_tags(note))
+                sort_notes_by_tags(note)
 
             case "search-contact":
                 print(search_contact(args, book))

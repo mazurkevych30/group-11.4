@@ -48,6 +48,8 @@ def show_all(book: AddressBook) -> None :
 @input_error
 def show_phone(args, book: AddressBook) -> None:
     """Print phone numbers of contact from the addressbook by name"""
+    if len(args) == 0:
+        print("Please enter a name.")
     name, *_ = args
     record = book.find(name)
     if record is None:
@@ -121,6 +123,9 @@ def show_birthday(args, book: AddressBook):
 @input_error
 def birthdays(args: list, book: AddressBook):
     """Print upcoming birthday"""
+    if len(args) == 0:
+        print("Please enter the date up to which to show the list of birthdays.")
+
     input_date, *_ = args
 
     congratulations = book.get_upcoming_birthdays(datetime.strptime(input_date, '%d.%m.%Y').date())
