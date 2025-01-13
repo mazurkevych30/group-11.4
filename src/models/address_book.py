@@ -36,7 +36,7 @@ class AddressBook(UserDict):
         upcoming_birthdays = []
 
         for name, record in self.data.items():
-            if record.birthday.value is None:
+            if record.birthday is None:
                 continue
             birthday_this_year = record.birthday.value.date().replace(year=today.year)
             if today.month == 12 and today.day > 20:
