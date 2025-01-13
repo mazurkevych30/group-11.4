@@ -17,6 +17,9 @@ class Record:
         """
         Method to add phone number to the record
         """
+        result = self.find_phone(phone)
+        if not isinstance(result, str):
+            raise ValueError("Phone number already exists")
         self.phones.append(Phone(phone))
         return "Added mobile phone number."
 
@@ -51,6 +54,9 @@ class Record:
         """
         Method to edit phone number in the record
         """
+        result = self.find_phone(new_phone)
+        if not isinstance(result, str):
+            raise ValueError("Phone number already exists")
         phone = self.find_phone(old_phone)
         if isinstance(phone, str):
             return phone
@@ -83,6 +89,6 @@ class Record:
         return (
             "Contact name: " + self.name.value + " birthday: " + birthday_value
             + " phones: " + '; '.join(p.value for p in self.phones)
-            + " email: " + (self.email if self.email else 'no email')
+            + " email: " + (str(self.email) if self.email else 'no email')
             + " address: " + (str(self.address) if self.address else 'no address')
             )

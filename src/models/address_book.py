@@ -12,7 +12,6 @@ class AddressBook(UserDict):
         Add record to the address book
         """
         if str(record.name).lower() in self.data:
-            print(f"AddressBook already have record with name {str(record.name)}")
             raise ValueError(f"AddressBook already have record with name {str(record.name)}")
         self.data[str(record.name).lower()] = record
 
@@ -37,6 +36,8 @@ class AddressBook(UserDict):
         upcoming_birthdays = []
 
         for name, record in self.data.items():
+            if record.birthday.value is None:
+                continue
             birthday_this_year = record.birthday.value.date().replace(year=today.year)
             if today.month == 12 and today.day > 20:
                 birthday_this_year = birthday_this_year.replace(year=birthday_this_year.year + 1)

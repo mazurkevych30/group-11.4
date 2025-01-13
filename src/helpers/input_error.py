@@ -9,7 +9,8 @@ def input_error(func):
         "The phone number must be 10 digits.",
         "Name is required field.",
         "Invalid email.",
-        "Invalid date format. Use DD.MM.YYYY"
+        "Invalid date format. Use DD.MM.YYYY",
+        "Phone number already exists"
         ]
 
     def inner(*args, **kwargs):
