@@ -11,7 +11,7 @@ commands_list = [
     "phone", "all-contacts", "add-birthday", "add-email", "edit-email", "add-address", 
     "edit-address", "show-birthday", "edit-birthday", "birthdays", "add-note", "show-notes",
     "edit-note", "delete-note", "find-note-by-key", "find-notes-by-tags", "sort-notes-by-tags",
-    "close", "exit"
+    "close", "exit", "show-phone"
 ]
 
 class CommandCompleter(Completer):
